@@ -7,14 +7,13 @@ Beginning of creation on Mon Dec 5 2023
 """
 
 #Importation de fonctions externes (librairies) :
-
 import pygame    
 
 pygame.init()  
     
 #Définition locale de fonctions : 
 
-def accueil():
+def regles():
     run = True
     while run:
         for event in pygame.event.get():
@@ -22,8 +21,9 @@ def accueil():
                 run = False
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if accueil_button.collidepoint(event.pos):
-                    print("Retour à la page d'accueil")# Ajouter le lien 
-    
+                    print("Retour à la page d'accueil")
+                    import main.py
+                    main.py
         screen.fill(background_color)
         pygame.draw.rect(screen, (155, 0, 0), accueil_button)
         screen.blit(font.render("""     Retour à l'accueil""", True, (255, 255, 255)), (10, 65))
@@ -55,5 +55,5 @@ accueil_button = pygame.Rect(10, 50, 150, 50)
 #Corps principal du programme : 
 
 pygame.display.set_caption("Tic Tac Toe - Règles du jeu")
-accueil()
+regles()
 pygame.quit()
