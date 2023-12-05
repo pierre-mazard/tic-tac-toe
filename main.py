@@ -4,7 +4,7 @@ Beginning of creation on Mon Dec 4 2023
 
 @author: Mazard Pierre
 
-#                                  Tic-Tac-Toe
+#                                  Tic-Tac-Toe accueil
 """
 
 #Importation de fonctions externes (librairies) :
@@ -34,9 +34,9 @@ def accueil():
         pygame.draw.rect(screen, (155, 0, 0), regles_button)
         pygame.draw.rect(screen, (0, 155, 0), commencer_button)
         pygame.draw.rect(screen, (0, 0, 155), scores_button)
-        screen.blit(font.render("Règles du jeu", True, (255, 255, 255)), (10, 65))
-        screen.blit(font.render("Commencer la partie", True, (255, 255, 255)), (10, 165))
-        screen.blit(font.render("Historique des scores", True, (255, 255, 255)), (10, 265))
+        screen.blit(font.render("""      Règles du jeu""", True, (255, 255, 255)), (10, 65))
+        screen.blit(font.render("""  Commencer la partie""", True, (255, 255, 255)), (10, 165))
+        screen.blit(font.render("""  Historique des scores""", True, (255, 255, 255)), (10, 265))
                
         pygame.display.update()
 
@@ -54,7 +54,7 @@ scores_button = pygame.Rect(10, 250, 150, 50)
 
 #Corps principal du programme : 
 
-pygame.display.set_caption("Tic Tac Toe")
+pygame.display.set_caption("Tic Tac Toe - Accueil")
 accueil()
 pygame.quit()
     
