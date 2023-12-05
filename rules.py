@@ -22,16 +22,27 @@ def accueil():
                 run = False
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if accueil_button.collidepoint(event.pos):
-                    print("Retour à la page d'accueil")
+                    print("Retour à la page d'accueil")# Ajouter le lien 
     
         screen.fill(background_color)
         pygame.draw.rect(screen, (155, 0, 0), accueil_button)
         screen.blit(font.render("""     Retour à l'accueil""", True, (255, 255, 255)), (10, 65))
-        rules_text = "Règles du jeu : ???????????????????????????????????????..."  
-        text_surface = font.render(rules_text, True, (0, 0, 0))
-        text_rect = text_surface.get_rect()
-        text_rect.center = (width_screen * 2 / 3, height_screen / 2)
-        screen.blit(text_surface, text_rect)
+        black_frame_width = int(width_screen * 2 / 3)
+        pygame.draw.rect(screen, (0, 0, 0), (width_screen - black_frame_width, 0, black_frame_width, height_screen))
+        rules_text = "Règles du jeu :\n"
+        rules_text += "1. Le jeu se joue sur une grille de 3x3 cases.\n"
+        rules_text += "2. Deux joueurs s'affrontent, l'un utilisant les X et l'autre les O.\n"
+        rules_text += "3. Les joueurs alternent pour placer leur symbole dans une case vide.\n"
+        rules_text += "4. Le but est d'aligner trois symboles identiques.\n"
+        rules_text += "5. Si la grille est remplie sans alignements, la partie est déclarée nulle.\n"
+        rules_text += "6. Par convention, le joueur ayant choisi les X commence la partie."
+        text_lines = rules_text.split("\n")
+        for i, line in enumerate(text_lines):
+            text_surface = font.render(line, True, (255, 255, 255))
+            text_rect = text_surface.get_rect()
+            text_rect.topleft = (width_screen - black_frame_width + 10, 100 + i * 30)
+            screen.blit(text_surface, text_rect)
+        
         pygame.display.flip()
     
 #Déclaration des variables : 

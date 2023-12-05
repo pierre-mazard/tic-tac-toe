@@ -23,11 +23,11 @@ def accueil():
                 run = False
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if regles_button.collidepoint(event.pos):
-                    print("Afficher les règles du jeu")
+                    print("Afficher les règles du jeu")#Ajouter lien ver la page
                 elif commencer_button.collidepoint(event.pos):
-                    print("Commencer la partie")
+                    print("Commencer la partie")#Ajouter lien ver la page
                 elif scores_button.collidepoint(event.pos):
-                    print("Afficher l'historique des scores")
+                    print("Afficher l'historique des scores")#Ajouter lien ver la page
         
         screen.blit(background, (0, 0))        
         
