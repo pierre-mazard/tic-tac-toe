@@ -23,7 +23,7 @@ def regles():
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if accueil_button.collidepoint(event.pos):
                     print("Retour à la page d'accueil")             
-                    from ...main_tic_tac_toe import main
+                    import main 
                     main.py
         screen.fill(background_color)
         pygame.draw.rect(screen, (155, 0, 0), accueil_button)
@@ -56,5 +56,6 @@ accueil_button = pygame.Rect(10, 50, 150, 50)
 #Corps principal du programme : 
 
 pygame.display.set_caption("Tic Tac Toe - Règles du jeu")
+
 regles()
 pygame.quit()

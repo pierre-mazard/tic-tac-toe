@@ -25,7 +25,7 @@ def accueil():
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if regles_button.collidepoint(event.pos):
                     print("Afficher les règles du jeu")
-                    from rules_tic_tac_toe import rules
+                    from rules_tic_tac_toe.rules import rules
                     rules.py                    
                 elif commencer_button.collidepoint(event.pos):
                     print("Commencer la partie")#Ajouter lien ver la page
@@ -60,4 +60,4 @@ scores_button = pygame.Rect(10, 250, 150, 50)
 pygame.display.set_caption("Tic Tac Toe - Accueil")
 accueil()
 pygame.quit()
-    
+        
