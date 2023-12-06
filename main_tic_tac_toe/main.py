@@ -29,6 +29,8 @@ def accueil():
                     rules.py                    
                 elif commencer_button.collidepoint(event.pos):
                     print("Commencer la partie")#Ajouter lien ver la page
+                    from game_tic_tac_toe.start_the_game import start_the_game
+                    start_the_game.py  
                 elif scores_button.collidepoint(event.pos):
                     print("Afficher l'historique des scores")#Ajouter lien ver la page
         
