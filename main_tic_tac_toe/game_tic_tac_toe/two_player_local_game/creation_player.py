@@ -102,7 +102,7 @@ while continuer:
     text_surface = font.render('Démarrer la partie', True, (255, 255, 255))
     text_rect = text_surface.get_rect(center=launch_button.center)
     screen.blit(text_surface, text_rect)
-    # Affichage des noms des joueurs
+    # Affichage des noms du joueur gagnant
     font_names = pygame.font.Font(None, 24)
     text1 = font_names.render(f"Joueur X : {input_box1.player_name}", True, (0, 0, 0))
     text2 = font_names.render(f"Joueur O : {input_box2.player_name}", True, (0, 0, 0))

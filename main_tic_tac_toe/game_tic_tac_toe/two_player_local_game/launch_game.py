@@ -7,6 +7,7 @@ Created on Wed Dec  6  2023
 #                                  Tic-Tac-Toe Démarrer le jeu
 """
 import pygame
+import datetime
 pygame.init()
 
 # Dimensions de la fenêtre
@@ -80,9 +81,12 @@ while running:
                     text_rect = text.get_rect(center=(width_screen // 2, height_screen // 18))
                     screen.blit(text, text_rect)
                     # Changer la couleur du plateau en vert
-                    pygame.draw.rect(screen, green, (board_x, board_y, board_size, board_size))
-                    
-                   
+                    pygame.draw.rect(screen, green, (board_x, board_y, board_size, board_size)) 
+                    #Ajout du gagnant dans un historique
+                    date_creation = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                    with open("gagnants.txt", "a") as fichier:
+                        fichier.write(f"{winner_name} {date_creation}\n")
+                    #Mise à jour des victoires du joueur dans l'historique 
                 # Alterner les tours
                 current_player = "O" if current_player == "X" else "X"
 
