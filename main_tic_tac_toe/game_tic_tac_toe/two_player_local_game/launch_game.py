@@ -6,24 +6,101 @@ Created on Wed Dec  6  2023
 
 #                                  Tic-Tac-Toe Démarrer le jeu
 """
+import pygame
+pygame.init()
 
-#Importation de fonctions externes (librairies) :
+# Dimensions de la fenêtre
+width_screen, height_screen = 800, 600
 
-import pygame    
+# Création de la fenêtre
+screen = pygame.display.set_mode((width_screen, height_screen))
+pygame.display.set_caption("Tic Tac Toe - Partie locale à deux joueurs")
+white = (255, 255, 255)
+green = (0, 255, 0)  # Nouvelle couleur pour le plateau en fin de partie
+gray = (192, 192, 192)  # Couleur du rectangle gris
+screen.fill(white)
 
-pygame.init()    
+# Dimensions du plateau Tic Tac Toe
+board_size = 400
+board_x = (width_screen - board_size) // 2
+board_y = (height_screen - board_size) // 2
+
+#Dessiner rectangle gris au dessus du plateau de jeu 
+pygame.draw.rect(screen, gray, (board_x, board_y - 90, board_size, 50))
+
+# Liste pour stocker l'état du plateau (initialisé avec des cases vides)
+board_state = [""] * 9
+
+# Tour de jeu (X commence)
+current_player = "X"
+
+# Liste des combinaisons gagnantes (indices des cases)
+winning_combinations = [(0, 1, 2), (3, 4, 5), (6, 7, 8),
+                        (0, 3, 6), (1, 4, 7), (2, 5, 8),
+                        (0, 4, 8), (2, 4, 6)]
+
+#Lire nom des joueurs inscrits
+def read_player_names(filename):
+    with open(filename, 'r') as file:
+        return [line.split()[0] for line in file]#Lire le premier mot de la ligne 
+player_names = read_player_names('inscription.txt')
+player1, player2 = player_names[-2], player_names[-1]#Récupérer les deux derniers joueurs inscrits.
 
 
-#Définition locale de fonctions : 
+# Vérifie si un joueur a gagné
+def check_winner():
+    for combo in winning_combinations:
+        if board_state[combo[0]] == board_state[combo[1]] == board_state[combo[2]] != "":
+            return board_state[combo[0]]
+    return None
 
+# Boucle principale pour maintenir la fenêtre ouverte
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            # Détecter le clic de souris
+            mouse_x, mouse_y = pygame.mouse.get_pos()
+            # Calculer la case cliquée
+            clicked_row = (mouse_y - board_y) // (board_size // 3)
+            clicked_col = (mouse_x - board_x) // (board_size // 3)
+            # Mettre à jour l'état du plateau
+            index = clicked_row * 3 + clicked_col
+            if board_state[index] == "":
+                board_state[index] = current_player
+                # Vérifier s'il y a un gagnant
+                winner = check_winner()
+                if winner:
+                    winner_name = player1 if winner == "X" else player2
+                    print(f"Le joueur {winner_name} a gagné la partie!")
+                    font = pygame.font.Font(None, 36)
+                    text = font.render(f"Le joueur {winner_name} a gagné!", True, (255, 0, 0))
+                    text_rect = text.get_rect(center=(width_screen // 2, height_screen // 18))
+                    screen.blit(text, text_rect)
+                    # Changer la couleur du plateau en vert
+                    pygame.draw.rect(screen, green, (board_x, board_y, board_size, board_size))
+                    
+                   
+                # Alterner les tours
+                current_player = "O" if current_player == "X" else "X"
 
+    # Dessiner les symboles sur le plateau
+    for row in range(3):
+        for col in range(3):
+            x = board_x + col * (board_size // 3)
+            y = board_y + row * (board_size // 3)
+            pygame.draw.rect(screen, (0, 0, 0), (x, y, board_size // 3, board_size // 3), 2)
+            symbol = board_state[row * 3 + col]
+            if symbol == "X":
+                pygame.draw.line(screen, (0, 0, 0), (x, y), (x + board_size // 3, y + board_size // 3), 2)
+                pygame.draw.line(screen, (0, 0, 0), (x, y + board_size // 3), (x + board_size // 3, y), 2)
+            elif symbol == "O":
+                pygame.draw.circle(screen, (0, 0, 0), (x + board_size // 6, y + board_size // 6), board_size // 6, 2)
 
-#Déclaration des variables : 
-
-
-#Corps principal du programme : 
-
-pygame.display.set_caption("Tic Tac Toe - TIC TAC TOE A DEUX JOUEURS")
+    pygame.display.update()
 
 pygame.quit()
-        
+
+

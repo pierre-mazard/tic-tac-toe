@@ -23,7 +23,7 @@ pygame.display.set_caption("Tic Tac Toe - Création des joueurs")
 white = (255, 255, 255)
 screen.fill(white)
 
-# Coordonnées et dimensions des rectangles verts
+# Coordonnées et dimensions des rectangles 
 rect1 = pygame.Rect(100, 150, 250, 100)
 rect2 = pygame.Rect(500, 150, 250, 100)
 
@@ -66,34 +66,46 @@ def enregistrer_joueur(nom_joueur):
     with open("inscription.txt", "a") as fichier:
         fichier.write(f"{nom_joueur} {date_creation}\n")
 
-# Police de caractères
-font = pygame.font.Font(None, 100)
 
 # Créez deux instances de la classe InputBox
 input_box1 = InputBox(rect1)
 input_box2 = InputBox(rect2)
 
+#création bouton lancer la partie 
+launch_button = pygame.Rect(600, 500, 150, 30)
+pygame.draw.rect(screen, (0, 155, 0), launch_button)
+   
 # Boucle principale
 continuer = True
 while continuer:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             continuer = False
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            if launch_button.collidepoint(event.pos):
+                import launch_game
+                launch_game
+                
         input_box1.handle_event(event)
         input_box2.handle_event(event)
-
     # Dessin des rectangles verts
     pygame.draw.rect(screen, (180, 0, 0), rect1)
     pygame.draw.rect(screen, (0, 180, 0), rect2)
-
+    
+ 
+    
     # Dessin de la saisie de texte
+    font = pygame.font.Font(None, 80)
     input_box1.draw(screen)
     input_box2.draw(screen)
-
+    font = pygame.font.SysFont('Arial', 20)
+    text_surface = font.render('Démarrer la partie', True, (255, 255, 255))
+    text_rect = text_surface.get_rect(center=launch_button.center)
+    screen.blit(text_surface, text_rect)
     # Affichage des noms des joueurs
     font_names = pygame.font.Font(None, 24)
-    text1 = font_names.render(f"Joueur 1 : {input_box1.player_name}", True, (0, 0, 0))
-    text2 = font_names.render(f"Joueur 2 : {input_box2.player_name}", True, (0, 0, 0))
+    text1 = font_names.render(f"Joueur X : {input_box1.player_name}", True, (0, 0, 0))
+    text2 = font_names.render(f"Joueur O : {input_box2.player_name}", True, (0, 0, 0))
     screen.blit(text1, (rect1.x, rect1.y + rect1.height + 10))
     screen.blit(text2, (rect2.x, rect2.y + rect2.height + 10))
 
