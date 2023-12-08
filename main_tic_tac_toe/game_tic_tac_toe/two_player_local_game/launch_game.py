@@ -18,7 +18,7 @@ screen = pygame.display.set_mode((width_screen, height_screen))
 pygame.display.set_caption("Tic Tac Toe - Partie locale à deux joueurs")
 white = (255, 255, 255)
 green = (0, 255, 0)  # Nouvelle couleur pour le plateau en fin de partie
-gray = (192, 192, 192)  # Couleur du rectangle gris
+gray = (100, 100, 100)  # Couleur du rectangle gris
 screen.fill(white)
 
 # Dimensions du plateau Tic Tac Toe
@@ -27,7 +27,7 @@ board_x = (width_screen - board_size) // 2
 board_y = (height_screen - board_size) // 2
 
 #Dessiner rectangle gris au dessus du plateau de jeu 
-pygame.draw.rect(screen, gray, (board_x, board_y - 90, board_size, 50))
+pygame.draw.rect(screen, gray, (145 ,45, 500, 50))
 
 # Liste pour stocker l'état du plateau (initialisé avec des cases vides)
 board_state = [""] * 9
@@ -77,8 +77,8 @@ while running:
                     winner_name = player1 if winner == "X" else player2
                     print(f"Le joueur {winner_name} a gagné la partie!")
                     font = pygame.font.Font(None, 36)
-                    text = font.render(f"Le joueur {winner_name} a gagné!", True, (255, 0, 0))
-                    text_rect = text.get_rect(center=(width_screen // 2, height_screen // 18))
+                    text = font.render(f"Le joueur {winner_name} a gagné !", True, (10, 250, 10))
+                    text_rect = text.get_rect(center=(width_screen // 2, height_screen // 8.5))
                     screen.blit(text, text_rect)
                     # Changer la couleur du plateau en vert
                     pygame.draw.rect(screen, green, (board_x, board_y, board_size, board_size)) 
@@ -87,6 +87,7 @@ while running:
                     with open("gagnants.txt", "a") as fichier:
                         fichier.write(f"{winner_name} {date_creation}\n")
                     #Mise à jour des victoires du joueur dans l'historique 
+                
                 # Alterner les tours
                 current_player = "O" if current_player == "X" else "X"
 

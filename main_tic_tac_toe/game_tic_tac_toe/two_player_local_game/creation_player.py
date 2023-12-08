@@ -26,7 +26,7 @@ screen.fill(white)
 # Coordonnées et dimensions des rectangles 
 rect1 = pygame.Rect(100, 150, 250, 100)
 rect2 = pygame.Rect(500, 150, 250, 100)
-
+rect3 = pygame.Rect(250, 50, 350, 80)
 # Classe pour la saisie de texte
 class InputBox:
     def __init__(self, rect):
@@ -73,7 +73,7 @@ input_box2 = InputBox(rect2)
 
 #création bouton lancer la partie 
 launch_button = pygame.Rect(600, 500, 150, 30)
-pygame.draw.rect(screen, (0, 155, 0), launch_button)
+pygame.draw.rect(screen, (0, 0, 0), launch_button)
    
 # Boucle principale
 continuer = True
@@ -88,21 +88,25 @@ while continuer:
                 
         input_box1.handle_event(event)
         input_box2.handle_event(event)
-    # Dessin des rectangles verts
+    # Dessin des rectangles 
     pygame.draw.rect(screen, (180, 0, 0), rect1)
     pygame.draw.rect(screen, (0, 180, 0), rect2)
-    
+    pygame.draw.rect(screen, (255, 255, 255), rect3)
  
     
     # Dessin de la saisie de texte
-    font = pygame.font.Font(None, 80)
+    font = pygame.font.Font(None, 50)
     input_box1.draw(screen)
     input_box2.draw(screen)
     font = pygame.font.SysFont('Arial', 20)
-    text_surface = font.render('Démarrer la partie', True, (255, 255, 255))
+    text_surface = font.render('Démarrer la partie', True, (250, 100, 112))
     text_rect = text_surface.get_rect(center=launch_button.center)
     screen.blit(text_surface, text_rect)
-    # Affichage des noms du joueur gagnant
+    font = pygame.font.SysFont('Arial', 20)
+    text_surface = font.render('Sélectionner le cadre et inscrire le nom du joueur puis valider avec la touche entrée', True, (255, 50, 50))
+    text_rect = text_surface.get_rect(center=(250 + 350 // 2, 50 + 80 // 2))
+    screen.blit(text_surface, text_rect)
+    # Affichage des noms du joueur 
     font_names = pygame.font.Font(None, 24)
     text1 = font_names.render(f"Joueur X : {input_box1.player_name}", True, (0, 0, 0))
     text2 = font_names.render(f"Joueur O : {input_box2.player_name}", True, (0, 0, 0))
