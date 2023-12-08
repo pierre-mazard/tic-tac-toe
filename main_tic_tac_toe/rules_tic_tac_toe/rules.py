@@ -11,7 +11,7 @@ Beginning of creation on Mon Dec 5 2023
 import pygame    
 
 pygame.init()  
-    
+  
 #Définition locale de fonctions : 
 
 def regles():
@@ -23,7 +23,7 @@ def regles():
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if accueil_button.collidepoint(event.pos):
                     print("Retour à la page d'accueil")             
-                    import main 
+                    import main.py
                     main.py
         screen.fill(background_color)
         pygame.draw.rect(screen, (155, 0, 0), accueil_button)

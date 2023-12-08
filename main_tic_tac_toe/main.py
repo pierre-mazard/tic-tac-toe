@@ -9,10 +9,12 @@ Beginning of creation on Mon Dec 4 2023
 
 #Importation de fonctions externes (librairies) :
 
+
 import pygame    
 
 pygame.init()    
 
+# Chemin du dossier que vous souhaitez définir comme répertoire de travail
 
 #Définition locale de fonctions : 
 
@@ -25,15 +27,16 @@ def accueil():
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if regles_button.collidepoint(event.pos):
                     print("Afficher les règles du jeu")
-                    from rules_tic_tac_toe.rules import rules
+                    from rules_tic_tac_toe import rules
                     rules.py                    
                 elif commencer_button.collidepoint(event.pos):
                     print("Commencer la partie")#Ajouter lien ver la page
-                    from game_tic_tac_toe.start_the_game import start_the_game
+                    from game_tic_tac_toe import start_the_game
                     start_the_game.py  
                 elif scores_button.collidepoint(event.pos):
                     print("Afficher l'historique des scores")#Ajouter lien ver la page
-        
+                    from score_history import score_game_history
+                    score_game_history.py
         screen.blit(background, (0, 0))        
         
         pygame.draw.rect(screen, (155, 0, 0), regles_button)

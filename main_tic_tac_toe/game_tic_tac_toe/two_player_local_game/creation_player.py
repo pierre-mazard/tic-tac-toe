@@ -83,8 +83,8 @@ while continuer:
             continuer = False
         elif event.type == pygame.MOUSEBUTTONDOWN:
             if launch_button.collidepoint(event.pos):
-                import launch_game
-                launch_game
+                from .launch_game import launch_game
+                launch_game.py
                 
         input_box1.handle_event(event)
         input_box2.handle_event(event)
@@ -103,8 +103,8 @@ while continuer:
     text_rect = text_surface.get_rect(center=launch_button.center)
     screen.blit(text_surface, text_rect)
     font = pygame.font.SysFont('Arial', 20)
-    text_surface = font.render('Sélectionner le cadre et inscrire le nom du joueur puis valider avec la touche entrée', True, (255, 50, 50))
-    text_rect = text_surface.get_rect(center=(250 + 350 // 2, 50 + 80 // 2))
+    text_surface = font.render('Sélectionner le cadre et inscrire le nom du joueur sans espaces puis valider avec la touche entrée', True, (255, 50, 50))
+    text_rect = text_surface.get_rect(center=(230 + 350 // 2, 50 + 80 // 2))
     screen.blit(text_surface, text_rect)
     # Affichage des noms du joueur 
     font_names = pygame.font.Font(None, 24)

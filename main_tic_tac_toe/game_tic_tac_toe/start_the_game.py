@@ -23,16 +23,17 @@ def commencer_partie():
             if event.type == pygame.QUIT:
                 run = False
             elif event.type == pygame.MOUSEBUTTONDOWN:
-                if accueil_button.collidepoint(event.pos):
-                    print("Retour à la page d'accueil")             
-                    import main 
-                    main.py
-                elif bouton_joueurs.collidepoint(event.pos):
+                if bouton_joueurs.collidepoint(event.pos):
                     print("Partie locale à deux joueurs")
-                    from two_player_local_game.creation_player import creation_player
+                    from .two_player_local_game.creation_player import creation_player
                     creation_player.py
                 elif bouton_IA.collidepoint(event.pos):
                     print("Partie locale contre l'IA")
+                elif event.type == pygame.MOUSEBUTTONDOWN:
+                    if accueil_button.collidepoint(event.pos):
+                        print("Retour à la page d'accueil")             
+                        import main.py 
+                        main.py    
                     # Insérez ici le code pour démarrer la partie contre l'IA
         screen.fill(background_color)
         pygame.draw.rect(screen, (155, 0, 0), accueil_button)
@@ -46,7 +47,6 @@ def commencer_partie():
         pygame.display.flip()
 
 #Déclaration des variables : 
-
 width_screen, height_screen = 800, 600
 screen = pygame.display.set_mode((width_screen, height_screen))  
 font = pygame.font.Font(None, 20)
